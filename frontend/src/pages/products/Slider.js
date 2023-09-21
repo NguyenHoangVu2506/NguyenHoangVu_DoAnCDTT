@@ -9,7 +9,12 @@ function Slider(props) {
   
             <div className="slider-item">
   
-              <img src={require("../assets/images/slider/slider01.webp")} alt="" className="banner-img"/>
+              <img src={require("../../assets/images/slider/slider01.webp")} alt="" className="banner-img"/>
+            </div>
+  
+            <div className="slider-item">
+  
+              <img src={require("../../assets/images/slider/slider02.webp")} alt="" className="banner-img"/>
   
               
   
@@ -17,15 +22,7 @@ function Slider(props) {
   
             <div className="slider-item">
   
-              <img src={require("../assets/images/slider/slider02.webp")} alt="" className="banner-img"/>
-  
-              
-  
-            </div>
-  
-            <div className="slider-item">
-  
-              <img src={require("../assets/images/slider/slider03.webp")} alt="new fashion summer sale" className="banner-img"/>
+              <img src={require("../../assets/images/slider/slider03.webp")} alt="new fashion summer sale" className="banner-img"/>
   
              
   

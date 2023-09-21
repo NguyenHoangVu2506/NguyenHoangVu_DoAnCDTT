@@ -43,7 +43,7 @@ function AllProducts(props) {
 
                     <a href="#" class="showcase-category"></a>
 
-                    <a href="#">
+                    <a href="/chi-tiet">
                         <h3 class="showcase-title">Mô Hình Kim Loại 3D Lắp Ráp Gumdam</h3>
                     </a>
                     <div class="price-box">

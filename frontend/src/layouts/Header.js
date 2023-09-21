@@ -7,7 +7,7 @@ class Header extends Component {
     }
     render() {
         return (
-            
+
             <header>
 
 
@@ -18,7 +18,7 @@ class Header extends Component {
 
                         <Link to="#" className="header-logo">
 
-                            <img src={require("../assets/images/logo/logo02.jpg")} alt="Anon's logo" width={120} height={36} />
+                            <img src={require("../assets/images/logo/logo04.png")} alt="Anon's logo" width={160} height={40} />
 
 
 
@@ -35,15 +35,28 @@ class Header extends Component {
                         </div>
 
                         <div className="header-user-actions">
-                            <button className="action-btn">
-                                <ion-icon name="bag-handle-outline"></ion-icon>
+                            <div className="widget-header">
+                                <a href="/gio-hang" className="widget-view">
+                                    <div className="icon-area">
+                                        <i className="fa fa-shopping-cart"></i>
+                                    </div>
+                                    <span className="count">0</span>
+                                </a>
+                            </div>
+                            {/* <button className="action-btn" >
+                                <ion-icon name="bag-handle-outline" ></ion-icon>
                                 <span className="count">0</span>
-                            </button>
+                            </button> */}
 
                             <div className="dropdown">
-                                <button className="action-btn">
-                                    <ion-icon name="person-outline"></ion-icon>
-                                </button>
+                                <div className="widget-header">
+                                    <a href="#" className="widget-view">
+                                        <div className="icon-area">
+                                            <i className="fa fa-user"></i>
+                                        </div>
+                                    </a>
+                                </div>
+
                                 <div className="dropdown-content">
                                     <a className="footer-nav-link" href="\dang-nhap">Đăng nhập</a>
                                     <a className="footer-nav-link" href="\dang-ky">Tạo tài khoản</a>
@@ -77,7 +90,7 @@ class Header extends Component {
                             <li className="menu-category">
                                 <a href="lien-he" className="menu-title">Liên hệ</a>
                             </li>
-                            
+
 
 
                         </ul>
@@ -86,7 +99,7 @@ class Header extends Component {
 
                 </nav>
 
-                <div className="mobile-bottom-navigation">
+                {/* <div className="mobile-bottom-navigation">
 
                     <button className="action-btn" data-mobile-menu-open-btn>
                         <ion-icon name="menu-outline"></ion-icon>
@@ -112,7 +125,7 @@ class Header extends Component {
                         <ion-icon name="grid-outline"></ion-icon>
                     </button>
 
-                </div>
+                </div> */}
 
                 <nav className="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
 

@@ -9,6 +9,11 @@ html {
 INCLUDE STYLES AND COMPONENTS
 ===================== */
 /* ================== HELPERS  =================== */
+article:after,
+.form-group:after {
+  display: block;
+  clear: both;
+  content: ""; }
 
 /* ================== COMPONENTS =================== */
 .btn-facebook {

@@ -1,18 +1,16 @@
 import React from "react";
-import Slider from "./Slider";
-import NewProducts from "../pages/products/NewProducts";
-import SaleProducts from "../pages/products/SaleProducts";
-import AllProducts from "../pages/products/AllProducts";
+import Slider from "../pages/products/Slider";
+import Product from "../pages/products/Product";
+import Blog from "../pages/blog/Blog";
 
-function Home(props)
-{
-    return (
-        <div className="container">
-            <Slider/>
-            <NewProducts/>
-            <SaleProducts/>
-            <AllProducts/>
-        </div>
-    );
+function Home(props) {
+  return (
+    <main>
+      <Slider />
+
+      <Product />
+      <Blog />
+    </main>
+  );
 }
 export default Home

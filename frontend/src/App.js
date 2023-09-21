@@ -4,13 +4,13 @@ import '../src/assets/sass/app.scss';
 import Footer from './layouts/Footer';
 import Main from './layouts/Main';
 
+
 import './assets/js/script'
 
 function App() {
   return (
-    <div className="App">
-      <div class="overlay" data-overlay></div>
-      
+    <div >
+      <div className="overlay" data-overlay></div>
       <Header />
       <Main />
       <Footer />
