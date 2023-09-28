@@ -1,5 +1,16 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import brandservice from "../../services/BrandService";
+
 function AllProducts(props) {
+    const [brands, setBrand] = useState([]);
+
+    useEffect(function () {
+        (async function () {
+            await brandservice.getAll().then(function (result) {
+                setBrand(result.data.brands)
+            });
+        })();
+    }, []);
     return (<div class="product-main">
 
         <h2 class="title ">Tất cả sản phẩm</h2>
@@ -177,60 +188,63 @@ function AllProducts(props) {
                 </div>
 
             </div>
-            <div class="showcase">
+            {brands.map(function (brand, index) {
+                return (
+                    <div class="showcase">
 
-                <div class="showcase-banner">
-                    <img src={require("../../assets/images/products/product01.webp")} alt=""
-                        class="product-img default" width="300" />
-                    <img src={require("../../assets/images/products/product01a.webp")} alt=""
-                        class="product-img hover" width="300" />
+                        <div class="showcase-banner">
+                            <img src={require("../../assets/images/products/product01.webp")} alt=""
+                                class="product-img default" width="300" />
+                            <img src={require("../../assets/images/products/product01a.webp")} alt=""
+                                class="product-img hover" width="300" />
 
-                    <p class="showcase-badge angle black">sale</p>
+                            <p class="showcase-badge angle black">sale</p>
 
-                    <div class="showcase-actions">
-                        <button class="btn-action">
-                            <ion-icon name="heart-outline"></ion-icon>
-                        </button>
+                            <div class="showcase-actions">
+                                <button class="btn-action">
+                                    <ion-icon name="heart-outline"></ion-icon>
+                                </button>
 
-                        <button class="btn-action">
-                            <ion-icon name="eye-outline"></ion-icon>
-                        </button>
+                                <button class="btn-action">
+                                    <ion-icon name="eye-outline"></ion-icon>
+                                </button>
 
-                        <button class="btn-action">
-                            <ion-icon name="repeat-outline"></ion-icon>
-                        </button>
+                                <button class="btn-action">
+                                    <ion-icon name="repeat-outline"></ion-icon>
+                                </button>
 
-                        <button class="btn-action">
-                            <ion-icon name="bag-add-outline"></ion-icon>
-                        </button>
+                                <button class="btn-action">
+                                    <ion-icon name="bag-add-outline"></ion-icon>
+                                </button>
+                            </div>
+                        </div>
+                        <div class="showcase-content">
+
+                            <a href="#" class="showcase-category"></a>
+
+                            <a href="#">
+                                <h3 class="showcase-title">{brand.name} Mô Hình Kim Loại 3D Lắp Ráp Gumdam</h3>
+                            </a>
+                            <div class="price-box">
+                                <p class="price text-danger">1.248.00₫</p>
+                                <del>1.375.00₫</del>
+                            </div>
+                            <div class="showcase-rating">
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star"></ion-icon>
+                                <ion-icon name="star-outline"></ion-icon>
+                            </div>
+
+
+
+                        </div>
+
+
                     </div>
-                </div>
-                <div class="showcase-content">
-
-                    <a href="#" class="showcase-category"></a>
-
-                    <a href="#">
-                        <h3 class="showcase-title">Mô Hình Kim Loại 3D Lắp Ráp Gumdam</h3>
-                    </a>
-                    <div class="price-box">
-                        <p class="price text-danger">1.248.00₫</p>
-                        <del>1.375.00₫</del>
-                    </div>
-                    <div class="showcase-rating">
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star"></ion-icon>
-                        <ion-icon name="star-outline"></ion-icon>
-                    </div>
-
-
-
-                </div>
-
-
-            </div>
-
+                )
+            })}
         </div>
 
     </div>)

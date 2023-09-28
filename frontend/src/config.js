@@ -1,0 +1,1 @@
+export const urlImage="http://localhost/nguyenhoanvu/public/images/"

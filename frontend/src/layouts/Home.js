@@ -1,7 +1,7 @@
 import React from "react";
 import Slider from "../pages/products/Slider";
 import Product from "../pages/products/Product";
-import Blog from "../pages/blog/Blog";
+import BlogHome from "../pages/blog/BlogHome";
 
 function Home(props) {
   return (
@@ -9,7 +9,7 @@ function Home(props) {
       <Slider />
 
       <Product />
-      <Blog />
+      <BlogHome />
     </main>
   );
 }

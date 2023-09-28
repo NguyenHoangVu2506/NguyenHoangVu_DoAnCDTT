@@ -7,6 +7,7 @@ import Login from "../pages/users/Login";
 import Contact from "../pages/products/Contact";
 import ShoppingCart from "../pages/users/ShoppingCart";
 import ProductDetail from "../pages/products/ProductDetail";
+import Post from "../pages/blog/Post";
 const Main =()=>(
     <main>
        
@@ -18,6 +19,8 @@ const Main =()=>(
             <Route path="/dang-ky" element={<Register/>}/>
             <Route path="/dang-nhap" element={<Login/>}/>
             <Route path="/chi-tiet" element={<ProductDetail/>}/>
+            <Route path="/tin-tuc" element={<Post/>}/>
+
 
 
         </Routes>

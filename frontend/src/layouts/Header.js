@@ -18,7 +18,7 @@ class Header extends Component {
 
                         <Link to="#" className="header-logo">
 
-                            <img src={require("../assets/images/logo/logo04.png")} alt="Anon's logo" width={160} height={40} />
+                            <img src={require("../assets/images/logo/logo01.png")} alt="Anon's logo" width={200} height={50} />
 
 
 
@@ -79,13 +79,13 @@ class Header extends Component {
                                 <a href="/" className="menu-title">Trang chủ</a>
                             </li>
                             <li className="menu-category">
-                                <a href="#" className="menu-title ">Tất cả sản phẩm</a>
+                                <a href="#" className="menu-title ">Sản phẩm</a>
                             </li>
                             <li className="menu-category">
-                                <a href="#" className="menu-title">Danh mục sản phẩm</a>
+                                <a href="#" className="menu-title">Giới thiệu</a>
                             </li>
                             <li className="menu-category">
-                                <a href="#" className="menu-title">Tin tức</a>
+                                <a href="/tin-tuc" className="menu-title">Tin tức</a>
                             </li>
                             <li className="menu-category">
                                 <a href="lien-he" className="menu-title">Liên hệ</a>

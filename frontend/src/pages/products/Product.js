@@ -23,40 +23,51 @@ function Product() {
                         </div>
                         <article class="filter-group">
                             <h7 class="title">
-                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">	 Product type </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_1">Mô hình Gundam </a>
                             </h7>
                             <div class="filter-content collapse show" id="collapse_1">
                                 <div class="inner">
                                     <ul class="list-menu">
-                                        <li><a href="#">Shorts  </a></li>
-                                        <li><a href="#">Trousers </a></li>
-                                        <li><a href="#">Sweaters  </a></li>
-                                        <li><a href="#">Clothes  </a></li>
-                                        <li><a href="#">Home items </a></li>
-                                        <li><a href="#">Jackats</a></li>
-                                        <li><a href="#">Somethings </a></li>
+                                        <li><a href="#">Gundam giá rẻ </a></li>
+                                        <li><a href="#">Gundam Bandai</a></li>
+                                        <li><a href="#">HG Gundam ( High Grade )  </a></li>
                                     </ul>
                                 </div>{/* <!-- inner.// -->*/}
                             </div>
                         </article> {/*<!-- filter-group  .// -->*/}
                         <article class="filter-group">
                             <h7 class="title">
-                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">	 Product type </a>
+                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_2">Mô hình Anime</a>
                             </h7>
                             <div class="filter-content collapse show" id="collapse_2">
                                 <div class="inner">
                                     <ul class="list-menu">
-                                        <li><a href="#">Shorts  </a></li>
-                                        <li><a href="#">Trousers </a></li>
-                                        <li><a href="#">Sweaters  </a></li>
-                                        <li><a href="#">Clothes  </a></li>
-                                        <li><a href="#">Home items </a></li>
-                                        <li><a href="#">Jackats</a></li>
-                                        <li><a href="#">Somethings </a></li>
+                                        <li><a href="#">OnePiece</a></li>
+                                        <li><a href="#">Naruto</a></li>
+                                        <li><a href="#">Dragon Ball</a></li>
+                                        <li><a href="#">Genshin Impact</a></li>
+                                        <li><a href="#">Kimetsu no Yaiba</a></li>
                                     </ul>
                                 </div>{/* <!-- inner.// -->*/}
                             </div>
                         </article> {/*<!-- filter-group  .// -->*/}
+                        <article class="filter-group">
+                            <h7 class="title">
+                                <a href="#" class="dropdown-toggle" data-toggle="collapse" data-target="#collapse_3">Mô hình Lắp ráp</a>
+                            </h7>
+                            <div class="filter-content collapse show" id="collapse_3">
+                                <div class="inner">
+                                    <ul class="list-menu">
+                                        <li><a href="#">Máy bay</a></li>
+                                        <li><a href="#">Xe máy</a></li>
+                                        <li><a href="#">Thuyền</a></li>
+                                        <li><a href="#">Mô hình kiến trúc</a></li>
+                                        <li><a href="#">Mô hình lắp ráp khác</a></li>
+                                    </ul>
+                                </div>{/* <!-- inner.// -->*/}
+                            </div>
+                        </article> {/*<!-- filter-group  .// -->*/}
+
 
 
 
