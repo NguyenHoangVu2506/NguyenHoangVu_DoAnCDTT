@@ -1,14 +1,30 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useParams } from "react-router-dom";
+import productservice from "../../services/ProductService";
+import { urlImage } from "../../config";
+import accounting from "accounting";
 function ProductDetail(props) {
+    const [product, setProduct] = useState([]);
+    const [product_other, setProductOther] = useState([]);
+    const { slug } = useParams();
+    useEffect(function () {
+        (function () {
+            productservice.getProductBySlug(slug).then(function (result) {
+                if (result.data.success === true) {
+                    setProduct(result.data.product);
+                    setProductOther(result.data.product_other)
+                }
+            });
+        })()
+    }, []);
     return (
         <div className="container">
             <section class="py-3 bg-light">
                 <div class="container">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="#">Home</a></li>
-                        <li class="breadcrumb-item">Category name</li>
-                        <li class="breadcrumb-item">category</li>
+                        <li class="breadcrumb-item">Sản phẩm</li>
+                        <li class="breadcrumb-item">Chi tiết sản phẩm</li>
                     </ol>
                 </div>
             </section>
@@ -22,14 +38,14 @@ function ProductDetail(props) {
                             <div class="card">
                                 <article class="gallery-wrap">
                                     <div class="img-big-wrap">
-                                        <div> <Link href="#"><img src={require("../../assets/images/products/product01.webp")} /></Link></div>
-                                    </div> {/*<!-- slider-product.// --> */}
-                                    {/* <div class="thumbs-wrap">
-                                        <a href="#" class="item-thumb"> <img src={require("../../assets/images/items/15.jpg")}/></a>
-                                        <a href="#" class="item-thumb"> <img src={require("../../assets/images/items/15-1.jpg")}/></a>
-                                        <a href="#" class="item-thumb"> <img src={require("../../assets/images/items/15-2.jpg")}/></a>
-                                        <a href="#" class="item-thumb"> <img src={require("../../assets/images/items/15-1.jpg")}/></a>
-                                    </div>  */}
+                                        <div> <Link href="#"><img src={urlImage + "product/" + product.image} height={450} width={500} /></Link></div>
+                                    </div> 
+                                    <div class="thumbs-wrap">
+                                        <a href="#" class="item-thumb"> <img src={urlImage + "product/" + product.image} width={50} height={50}/></a>
+                                        <a href="#" class="item-thumb"> <img src={urlImage + "product/" + product.image1} width={50} height={50}/></a>
+                                         <a href="#" class="item-thumb"> <img src={urlImage + "product/" + product.image} width={50} height={50}/></a> 
+                                        <a href="#" class="item-thumb"> <img src={urlImage + "product/" + product.image1} width={50} height={50}/></a> 
+                                    </div> 
                                     {/*<!-- slider-nav.// -->*/}
                                 </article> {/*<!-- gallery-wrap .end// -->*/}
                             </div> {/*<!-- card.// -->*/}
@@ -37,27 +53,13 @@ function ProductDetail(props) {
                         <main class="col-md-6">
                             <article class="product-info-aside">
 
-                                <h2 class="title mt-3 h4">Mô Hình Kim Loại 3D Lắp Ráp Gumdam </h2>
+                                <h2 class="title mt-3 h4">{product.name}</h2>
 
-                                {/* <div class="rating-wrap my-3">
-                                    <ul class="rating-stars">
-                                        <li style={{ width: "80%" }} class="stars-active">
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </li>
-                                        <li>
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i> <i class="fa fa-star"></i>
-                                            <i class="fa fa-star"></i>
-                                        </li>
-                                    </ul>
-                                    <small class="label-rating text-muted">132 reviews</small>
-                                    <small class="label-rating text-success"> <i class="fa fa-clipboard-check"></i> 154 orders </small>
-                                </div>  */}
+                               
 
                                 <div class="mb-3">
-                                    <p class="price text-danger h4">1.248.00₫ </p><del>1.375.00₫</del>
+                                    <p class="price text-danger h4">{accounting.formatNumber(product.price, 0, ".", ",")}₫ </p>
+                                    <del>{accounting.formatNumber(product.price_sale, 0, ".", ",")}₫</del>
 
                                 </div>
                                 <dl class="row">
@@ -105,15 +107,7 @@ function ProductDetail(props) {
                         <div class="col-md-8">
                             <h5 class="title-description">Mô tả</h5>
                             <ul class="list-check">
-                                <li>P-Bandai RG RX-93 Nu Gundam Clear Color</li>
-                                <li>Sản phẩm không bao gồm giá đỡ mô hình (Action Base is not included).
-                                </li>
-                                <li>Sản phẩm nhựa cao cấp với độ sắc nét cao, an toàn cho người chơi
-                                </li>
-                                <li>Mô hình lắp ráp rèn luyện tính kiên nhẫn, khéo léo.
-                                </li>
-                                <li>Các khớp cử động linh hoạt theo ý muốn.
-                                </li>
+                                {product.detail}
                             </ul>
 
 
@@ -124,12 +118,37 @@ function ProductDetail(props) {
 
                 </div>
             </section>
-            <h4 className="text-center">Sản phẩm liên quan</h4>
+            <h4 className="text-center"> </h4>            <h4 className="text-center">Sản phẩm liên quan</h4>
+
 
             <div class="container">
 
                 <div class="blog-container has-scrollbar">
-                    <div class="blog-card">
+                {product_other.map(function(product,index)
+                    {
+                        return                     <div class="blog-card">
+
+                        <a href="#">
+                            <img src={urlImage + "product/" + product.image} alt="Clothes Retail KPIs 2021 Guide for Clothes Executives" width="300" class="blog-banner" />
+                        </a>
+
+                        <div class="blog-content">
+
+
+                            <a href="#">
+                                <h3 class="blog-title">{product.name}</h3>
+                            </a>
+
+                            <p class="blog-meta">
+                            {product.price}₫
+                            </p>
+
+                        </div>
+
+                    </div>
+
+                    })}
+                    {/* <div class="blog-card">
 
                         <a href="#">
                             <img src={require("../../assets/images/blog/blog02.webp")} alt="Clothes Retail KPIs 2021 Guide for Clothes Executives" width="300" class="blog-banner" />
@@ -208,7 +227,7 @@ function ProductDetail(props) {
 
                         </div>
 
-                    </div>
+                    </div> */}
 
 
 

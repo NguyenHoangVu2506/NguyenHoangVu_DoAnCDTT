@@ -13,11 +13,12 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('db_menu', function (Blueprint $table) {
+        Schema::create('menu', function (Blueprint $table) {
             $table->id(); //id
             $table->string('name');
             $table->string('link');
-            $table->unsignedTinyInteger('table_id')->default(0);            
+            $table->unsignedTinyInteger('table_id')->default(0); 
+            $table->string('position');
             $table->string('type');
             $table->timestamps(); //created_at, updated_at
             $table->unsignedInteger('created_by')->default(1);
@@ -33,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('db_menu');
+        Schema::dropIfExists('menu');
     }
 };

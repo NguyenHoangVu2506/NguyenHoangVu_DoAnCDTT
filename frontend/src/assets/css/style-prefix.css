@@ -746,7 +746,7 @@ select.form-control:focus::-ms-value {
 }
 
 .btn-newsletter {
-  background: var(--eerie-black);
+  background: #96999f;
   color: var(--white);
   font-size: var(--fs-7);
   font-weight: var(--weight-600);
@@ -2050,7 +2050,7 @@ input[type="button"].btn-block {
 }
 
 .product-grid .showcase-badge.black {
-  background: var(--eerie-black);
+  background: #4580ed;
 }
 
 .product-grid .showcase-badge.pink {
@@ -3567,10 +3567,10 @@ footer {
   .dropdown-list {
     position: absolute;
     top: 100%;
-    left: 0;
-    width: 200px;
+    left: 38%;
+    width: 250px;
     background: var(--white);
-    padding: 20px 0;
+    padding: 15px 0;
     -webkit-border-radius: var(--border-radius-md);
     border-radius: var(--border-radius-md);
     border: 1px solid var(--cultured);

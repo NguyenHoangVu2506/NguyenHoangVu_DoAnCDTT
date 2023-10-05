@@ -50,6 +50,8 @@ class CategoryController extends Controller
         $category->sort_order = $request->sort_order; //form
         $category->metakey = $request->metakey; //form
         $category->metadesc = $request->metadesc; //form
+        $menu->position = $request->position; 
+
         $category->created_at = date('Y-m-d H:i:s');
         $category->created_by = 1;
         $category->status = $request->status; //form
@@ -67,6 +69,8 @@ class CategoryController extends Controller
         $category->sort_order = $request->sort_order; //form
         $category->metakey = $request->metakey; //form
         $category->metadesc = $request->metadesc; //form
+        $menu->position = $request->position; 
+
         $category->updated_at = date('Y-m-d H:i:s');
         $category->updated_by = 1;
         $category->status = $request->status; //form
@@ -89,14 +93,24 @@ class CategoryController extends Controller
         return response()->json(['message' => 'Thanh cong', 'success' => true, 'categorys' => $category], 200);
 
     }
-    /* lay du lieu len frontend */
-    // public function category_list($parent_id=0,$status=1){
+  
+    // public function category_list($parent_id = 0)
+    // {
     //     $args = [
-    //         ['parent_id','=',$parent_id],
-    //         ['status','=',$status]
+    //         ['parent_id', '=', $parent_id],
+    //         ['status', '=', 1]
     //     ];
-    //     $data = Category::where($args)->orderBy('sort_order','ASC')->get();
-    //     return response()->json($data,200);
+    //     $categorys = Category::where($args)
+    //         ->orderBy('sort_order', 'ASC')
+    //         ->get();
+    //     return response()->json(
+    //         [
+    //             'success' => true,
+    //             'message' => 'Tải dữ liệu thành công',
+    //             'categorys' => $categorys
+    //         ],
+    //         200
+    //     );
     // }
     public function category_list($parent_id = 0)
     {
@@ -107,13 +121,28 @@ class CategoryController extends Controller
         $categorys = Category::where($args)
             ->orderBy('sort_order', 'ASC')
             ->get();
-        return response()->json(
-            [
-                'success' => true,
-                'message' => 'Tải dữ liệu thành công',
-                'categorys' => $categorys
-            ],
-            200
-        );
+        if(count($categorys))
+            {
+                return response()->json(
+                    [
+                        'success' => true,
+                        'message' => 'Tải dữ liệu thành công',
+                        'categorys' => $categorys
+                    ],
+                    200
+                );
+            }
+        else{
+            return response()->json(
+                [
+                    'success' => false,
+                    'message' => 'Khong tim thay du lieu',
+                    'categorys' => null
+                ],
+                404
+            );
+        }
+        
     }
+
 }

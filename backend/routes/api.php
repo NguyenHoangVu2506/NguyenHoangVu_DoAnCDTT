@@ -29,16 +29,20 @@ use App\Http\Controllers\Api\SingleController;
 |
 */
 //
-Route::get('menu_list/{position}/{parent_id?}', [MenuController::class, 'menu_list']);
 Route::get('slider_list/{position}', [SliderController::class, 'slider_list']);
-Route::get('category_list/{parent_id?}', [CategoryController::class, 'category_list']);
 Route::get('topic_list/{parent_id?}', [TopicController::class, 'topic_list']);
 
 Route::get('product_home/{limit}/{category_id?}', [ProductController::class, 'product_home']);
 Route::get('product_all/{limit}/{page?}', [ProductController::class, 'product_all']);
+Route::get('product_new/{limit}/{page?}', [ProductController::class, 'product_new']);
+Route::get('product_sale/{limit}/{page?}', [ProductController::class, 'product_sale']);
+Route::get('product_hot/{limit}/{page?}', [ProductController::class, 'product_hot']);
+
 Route::get('product_category/{category_id}/{limit}', [ProductController::class, 'product_category']);
 Route::get('product_brand/{brand_id}/{limit}', [ProductController::class, 'product_brand']);
 Route::get('product_detail/{slug}', [ProductController::class, 'product_detail']);
+Route::get('product_detail/{id}', [ProductController::class, 'product_detail']);
+
 Route::get('product_other/{id}/{limit}', [ProductController::class, 'product_other']);
 
 Route::get('post_list/{limit}', [PostController::class, 'post_list']);
@@ -59,6 +63,7 @@ Route::prefix('brand')->group(function(){
 });
 
 Route::prefix('category')->group(function(){
+    Route::get('category_list/{parent_id?}', [CategoryController::class, 'category_list']);
     Route::get('index',[CategoryController::class,'index']);
     Route::get('show/{id}',[CategoryController::class,'show']);
     Route::post('store',[CategoryController::class,'store']);
@@ -73,6 +78,7 @@ Route::prefix('product')->group(function(){
     Route::delete('destroy/{id}', [ProductController::class, 'destroy']);
 });
 Route::prefix('menu')->group(function(){
+    Route::get('menu_list/{position}/{parent_id?}', [MenuController::class, 'menu_list']);
     Route::get('index',[MenuController::class,'index']);
     Route::get('show/{id}',[MenuController::class,'show']);
     Route::post('store',[MenuController::class,'store']);

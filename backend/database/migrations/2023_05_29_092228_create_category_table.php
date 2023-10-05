@@ -13,13 +13,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('db_category', function (Blueprint $table) {
+        Schema::create('category', function (Blueprint $table) {
             $table->id(); //id
             $table->string('name', 1000);
             $table->string('slug', 1000);
             $table->string('image', 1000)->nullable();
             $table->unsignedInteger('parent_id')->default(0);
             $table->unsignedInteger('sort_order')->default(0);
+            $table->string('position');
             $table->string('metakey');
             $table->string('metadesc');
             $table->timestamps(); //created_at, updated_at
@@ -37,6 +38,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('db_category');
+        Schema::dropIfExists('category');
     }
 };

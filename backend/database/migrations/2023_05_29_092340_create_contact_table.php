@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('db_contact', function (Blueprint $table) {
+        Schema::create('contact', function (Blueprint $table) {
             $table->id(); //id
             $table->unsignedInteger('user_id')->default(1);
             $table->string('name');

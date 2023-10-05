@@ -1,105 +1,136 @@
-import React, { Component } from "react"
+import React, { Component, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import menuservice from "../services/MenuService";
+import MenuItem from "../pages/menu/MenuItem";
 
-class Header extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
-        return (
+function Header() {
+    const [menus, setMenus] = useState([]);
+    useEffect(function () {
+        (async function () {
+            await menuservice.getByParentId('mainmenu', 0).then(function (result) {
+                setMenus(result.data.menus);
+            })
+        })();
+    }, []);
+    return (
 
-            <header>
-
-
-
-                <div className="header-main">
-
-                    <div className="container">
-
-                        <Link to="#" className="header-logo">
-
-                            <img src={require("../assets/images/logo/logo01.png")} alt="Anon's logo" width={200} height={50} />
+        <header>
 
 
 
-                        </Link>
+            <div className="header-main">
 
-                        <div className="header-search-container">
+                <div className="container">
 
-                            <input type="search" name="search" className="search-field" placeholder="Tìm kiếm" />
+                    <Link to="#" className="header-logo">
 
-                            <button className="search-btn">
-                                <ion-icon name="search-outline"></ion-icon>
-                            </button>
+                        <img src={require("../assets/images/logo/logo01.png")} alt="Anon's logo" width={200} height={50} />
 
+
+
+                    </Link>
+
+                    <div className="header-search-container">
+
+                        <input type="search" name="search" className="search-field" placeholder="Tìm kiếm" />
+
+                        <button className="search-btn">
+                            <ion-icon name="search-outline"></ion-icon>
+                        </button>
+
+                    </div>
+
+                    <div className="header-user-actions">
+                        <div className="widget-header">
+                            <a href="/gio-hang" className="widget-view">
+                                <div className="icon-area">
+                                    <i className="fa fa-shopping-cart"></i>
+                                </div>
+                                <span className="count">0</span>
+                            </a>
                         </div>
-
-                        <div className="header-user-actions">
-                            <div className="widget-header">
-                                <a href="/gio-hang" className="widget-view">
-                                    <div className="icon-area">
-                                        <i className="fa fa-shopping-cart"></i>
-                                    </div>
-                                    <span className="count">0</span>
-                                </a>
-                            </div>
-                            {/* <button className="action-btn" >
+                        {/* <button className="action-btn" >
                                 <ion-icon name="bag-handle-outline" ></ion-icon>
                                 <span className="count">0</span>
                             </button> */}
 
-                            <div className="dropdown">
-                                <div className="widget-header">
-                                    <a href="#" className="widget-view">
-                                        <div className="icon-area">
-                                            <i className="fa fa-user"></i>
-                                        </div>
-                                    </a>
-                                </div>
+                        <div className="dropdown">
+                            <div className="widget-header">
+                                <a href="#" className="widget-view">
+                                    <div className="icon-area">
+                                        <i className="fa fa-user"></i>
+                                    </div>
+                                </a>
+                            </div>
 
-                                <div className="dropdown-content">
-                                    <a className="footer-nav-link" href="\dang-nhap">Đăng nhập</a>
-                                    <a className="footer-nav-link" href="\dang-ky">Tạo tài khoản</a>
-                                    <a className="footer-nav-link" href="#">Đăng xuất</a>
-                                </div>
+                            <div className="dropdown-content">
+                                <a className="footer-nav-link" href="/dang-nhap">Đăng nhập</a>
+                                <a className="footer-nav-link" href="/dang-ky">Tạo tài khoản</a>
+                                <a className="footer-nav-link" href="/tai-khoan">Thông tin tài khoản</a>
                             </div>
                         </div>
-
                     </div>
 
                 </div>
 
-                <nav className="desktop-navigation-menu">
+            </div>
 
-                    <div className="container">
+            <nav className="desktop-navigation-menu">
+            <div className="container">
+                    <ul className="desktop-menu-category-list">
 
-                        <ul className="desktop-menu-category-list">
+                {menus.map(function (menu, index) {
+                    return (<MenuItem menu={menu} key={index} />);
+                })}
+                </ul>
 
-                            <li className="menu-category">
-                                <a href="/" className="menu-title">Trang chủ</a>
-                            </li>
-                            <li className="menu-category">
-                                <a href="#" className="menu-title ">Sản phẩm</a>
-                            </li>
-                            <li className="menu-category">
-                                <a href="#" className="menu-title">Giới thiệu</a>
-                            </li>
-                            <li className="menu-category">
-                                <a href="/tin-tuc" className="menu-title">Tin tức</a>
-                            </li>
-                            <li className="menu-category">
-                                <a href="lien-he" className="menu-title">Liên hệ</a>
-                            </li>
+</div>
+                {/* <div className="container">
+
+                    <ul className="desktop-menu-category-list">
+
+                        <li className="menu-category">
+                            <a href="/" className="menu-title">Trang chủ</a>
+                        </li>
+                        <li className="menu-category">
+                            <a href="#" className="menu-title ">Sản phẩm</a>
+                            <ul class="dropdown-list">
+
+                                <li class="dropdown-item">
+                                    <a href="/tat-ca-san-pham">Tất cả sản phẩm</a>
+                                </li>
+
+                                <li class="dropdown-item">
+                                    <a href="#">Sản phẩm theo danh mục</a>
+                                </li>
+
+                                <li class="dropdown-item">
+                                    <a href="#">Sản phẩm theo thương hiệu</a>
+                                </li>
 
 
 
-                        </ul>
+                            </ul>
+                        </li>
+                        <li className="menu-category">
+                            <a href="/gioi-thieu" className="menu-title">Giới thiệu</a>
+                        </li>
+                        <li className="menu-category">
+                            <a href="/tin-tuc" className="menu-title">Tin tức</a>
+                        </li>
+                        <li className="menu-category">
+                            <a href="lien-he" className="menu-title">Liên hệ</a>
+                        </li>
 
-                    </div>
 
-                </nav>
 
-                {/* <div className="mobile-bottom-navigation">
+                    </ul>
+
+                </div> */}
+
+            </nav>
+
+            {/* <div className="mobile-bottom-navigation">
 
                     <button className="action-btn" data-mobile-menu-open-btn>
                         <ion-icon name="menu-outline"></ion-icon>
@@ -127,7 +158,7 @@ class Header extends Component {
 
                 </div> */}
 
-                <nav className="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
+            {/* <nav className="mobile-navigation-menu  has-scrollbar" data-mobile-menu>
 
                     <div className="menu-top">
                         <h2 className="menu-title">Menu</h2>
@@ -364,11 +395,11 @@ class Header extends Component {
 
                     </div>
 
-                </nav>
+                </nav> */}
 
-            </header>
+        </header>
 
-        );
-    }
+    );
 }
+
 export default Header;

@@ -205,7 +205,58 @@ class ProductController extends Controller
     public function product_all($limit, $page = 1)
     {
         $offset = ($page - 1) * $limit;
-        $products = Product::where('status', 1)
+        $products = Product::where('status', '!=', 2)
+            ->orderBy('created_at', 'DESC')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Tải dữ liệu thành công',
+                'products' => $products
+            ],
+            200
+        );
+    }
+    public function product_new($limit, $page = 1)
+    {
+        $offset = ($page - 1) * $limit;
+        $products = Product::where('status', '=', 3)
+            ->orderBy('created_at', 'DESC')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Tải dữ liệu thành công',
+                'products' => $products
+            ],
+            200
+        );
+    }
+    public function product_sale($limit, $page = 1)
+    {
+        $offset = ($page - 1) * $limit;
+        $products = Product::where('status', '=', 4)
+            ->orderBy('created_at', 'DESC')
+            ->offset($offset)
+            ->limit($limit)
+            ->get();
+        return response()->json(
+            [
+                'success' => true,
+                'message' => 'Tải dữ liệu thành công',
+                'products' => $products
+            ],
+            200
+        );
+    }
+    public function product_hot($limit, $page = 1)
+    {
+        $offset = ($page - 1) * $limit;
+        $products = Product::where('status', '=', 5)
             ->orderBy('created_at', 'DESC')
             ->offset($offset)
             ->limit($limit)
@@ -226,7 +277,7 @@ class ProductController extends Controller
         array_push($listid, $category_id + 0);
         $args_cat1 = [
             ['parent_id', '=', $category_id + 0],
-            ['status', '=', 1]
+            ['status', '!=', 2]
         ];
         $list_category1 = Category::where($args_cat1)->get();
         if (count($list_category1) > 0) {
@@ -234,7 +285,7 @@ class ProductController extends Controller
                 array_push($listid, $row1->id);
                 $args_cat2 = [
                     ['parent_id', '=', $row1->id],
-                    ['status', '=', 1]
+                    ['status', '!=', 2]
                 ];
                 $list_category2 = Category::where($args_cat2)->get();
                 if (count($list_category2) > 0) {
@@ -261,7 +312,7 @@ class ProductController extends Controller
     //Lấy ra tất cả sản phẩm theo thương hiệu có phân trang
     public function product_brand($limit,$product_id)
     {
-        $products = Product::where([['brand_id', '=', $product_id], ['status', '=', 1]])
+        $products = Product::where([['brand_id', '=', $product_id], ['status', '!=', 2]])
             ->orderBy('created_at', 'DESC')
             ->limit($limit)
             ->get();
@@ -276,7 +327,7 @@ class ProductController extends Controller
     }
 public function product_detail($slug)
 {
-    $product=Product::where([['slug','=',$slug],['status','=',1]])->first();
+    $product=Product::where([['slug','=',$slug],['status','!=',2]])->first();
     if ($product==null)
     {
         return response()->json(
@@ -292,7 +343,7 @@ public function product_detail($slug)
         array_push($listid, $product->category_id);
         $args_cat1 = [
             ['parent_id', '=',$product->category_id],
-            ['status', '=', 1]
+            ['status', '!=', 2]
         ];
         $list_category1 = Category::where($args_cat1)->get();
         if (count($list_category1) > 0) {
@@ -300,7 +351,7 @@ public function product_detail($slug)
                 array_push($listid, $row1->id);
                 $args_cat2 = [
                     ['parent_id', '=', $row1->id],
-                    ['status', '=', 1]
+                    ['status', '!=', 2]
                 ];
                 $list_category2 = Category::where($args_cat2)->get();
                 if (count($list_category2) > 0) {
@@ -310,7 +361,7 @@ public function product_detail($slug)
                 }
             }
         }
-    $product_other=Product::where([['id','!=',$product->id],['status','=',1]])
+    $product_other=Product::where([['id','!=',$product->id],['status','!=',2]])
     ->whereIn('category_id',$listid)
     ->orderBy('created_at','DESC')
     ->limit(8)

@@ -1,10 +1,26 @@
-import React, { Component } from "react"
+import React, { Component, useEffect, useState } from "react"
 import { Link } from "react-router-dom"
-class Footer extends Component {
-    constructor(props) {
-        super(props);
-    }
-    render() {
+import menuservice from "../services/MenuService";
+import FooterItem from "../pages/footer/FooterItem";
+import categoryservice from "../services/CategoryService";
+import FooterCategoryItem from "../pages/footer/FooterCategoryItem";
+function Footer() {
+    // const [menus, setMenus] = useState([]);
+    // useEffect(function () {
+    //     (async function () {
+    //         await menuservice.getByParentId('mainmenu', 0).then(function (result) {
+    //             setMenus(result.data.menus);
+    //         })
+    //     })();
+    // }, []);
+    // const [categorys, setCategorys] = useState([]);
+    // useEffect(function () {
+    //     (async function () {
+    //         await categoryservice.getCategoryByParentId(0).then(function (result) {
+    //             setCategorys(result.data.categorys);
+    //         })
+    //     })();
+    // }, []);
         return (
             <footer>
 
@@ -19,26 +35,30 @@ class Footer extends Component {
                         <li className="footer-nav-item">
                             <h2 className="nav-title">Danh mục sản phẩm</h2>
                         </li>
-
+                        {/* {categorys.map(function (category, index) {
+                                            return (
+                                            <FooterCategoryItem category={category} key={index} />
+                                            );
+                                        })} */}
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Mô hình one-pice</a>
+                            <Link to={"/mo-hinh-gundam"} className="footer-nav-link">Mô hình Gundam</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Mô hình xe</a>
+                            <Link to={"/mo-hinh-anime"} className="footer-nav-link">Mô hình Anime</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Mô hình lắp ghép</a>
+                            <Link to={"/mo-hinh-lap-rap"} className="footer-nav-link">Mô hình lắp ráp</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Mô hình trang trí</a>
+                            <Link to={"/mo-hinh-trang-tri"} className="footer-nav-link">Mô hình trang trí</Link>
                         </li>
 
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Mô hình giới hạn</a>
-                        </li>
+                        {/* <li className="footer-nav-item">
+                            <Link to={""} className="footer-nav-link">Mô hình giới hạn</Link>
+                        </li> */}
 
                     </ul>
 
@@ -49,23 +69,23 @@ class Footer extends Component {
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Chính sách bảo mật</a>
+                            <Link to={"/chinh-sach-bao-mat"} className="footer-nav-link">Chính sách bảo mật</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Chính sách giao hàng</a>
+                            <Link to={"/chinh-sach-giao-hang"} className="footer-nav-link">Chính sách giao hàng</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Hướng dẫn mua hàng</a>
+                            <Link to={"/huong-dan-mua-hang"} className="footer-nav-link">Hướng dẫn mua hàng</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Chính sách mua hàng</a>
+                            <Link to={"/chinh-sach-mua-hang"} className="footer-nav-link">Chính sách mua hàng</Link>
                         </li>
 
                         <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Chính sách đổi trả</a>
+                            <Link to={"/chinh-sach-doi-tra"} className="footer-nav-link">Chính sách đổi trả</Link>
                         </li>
 
                     </ul>
@@ -75,31 +95,18 @@ class Footer extends Component {
                         <li className="footer-nav-item">
                             <h2 className="nav-title">VỀ CHÚNG TÔI</h2>
                         </li>
+                        <Link className="footer-nav-link" to={"/"}>Trang chủ</Link>
+                        <Link className="footer-nav-link" to={"/tat-ca-san-pham"}>Tất cả sản phẩm</Link>
+                        <Link className="footer-nav-link" to={"/thuong-hieu"}>Thương hiệu</Link>
+                        <Link className="footer-nav-link" to={"/gioi-thieu"}>Giới thiệu</Link>
+                        <Link className="footer-nav-link" to={"/tin-tuc"}>Tin tức</Link>
+                        <Link className="footer-nav-link" to={"/lien-he"}>Liên hệ</Link>
 
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Giới thiệu</a>
-                        </li>
 
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Liên hệ</a>
-                        </li>
-
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Tuyển dụng</a>
-                        </li>
-
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">About us</a>
-                        </li>
-
-                        <li className="footer-nav-item">
-                            <a href="#" className="footer-nav-link">Đối tác</a>
-                        </li>
-
+                        {/* {menus.map(function (menu, index) {
+                    return (<FooterItem menu={menu} key={index} />);
+                })} */}
                     </ul>
-
-                   
-
                     <ul className="footer-nav-list">
 
                         <li className="footer-nav-item">
@@ -121,7 +128,7 @@ class Footer extends Component {
                                 <ion-icon name="call-outline"></ion-icon>
                             </div>
 
-                            <a href="tel:+607936-8058" className="footer-nav-link">0912315349</a>
+                            <Link href="tel:+607936-8058" className="footer-nav-link">0912315349</Link>
                         </li>
 
                         <li className="footer-nav-item flex">
@@ -129,7 +136,7 @@ class Footer extends Component {
                                 <ion-icon name="mail-outline"></ion-icon>
                             </div>
 
-                            <a href="mailto:example@gmail.com" className="footer-nav-link">mohinhvip@gmail.com</a>
+                            <Link href="mailto:example@gmail.com" className="footer-nav-link">mohinhvip@gmail.com</Link>
                         </li>
 
                     </ul>
@@ -144,27 +151,27 @@ class Footer extends Component {
                             <ul className="social-link">
 
                                 <li className="footer-nav-item">
-                                    <a href="#" className="footer-nav-link">
+                                    <Link to={""} className="footer-nav-link">
                                         <ion-icon name="logo-facebook"></ion-icon>
-                                    </a>
+                                    </Link>
                                 </li>
 
                                 <li className="footer-nav-item">
-                                    <a href="#" className="footer-nav-link">
+                                    <Link to={""} className="footer-nav-link">
                                         <ion-icon name="logo-twitter"></ion-icon>
-                                    </a>
+                                    </Link>
                                 </li>
 
                                 <li className="footer-nav-item">
-                                    <a href="#" className="footer-nav-link">
+                                    <Link to={""} className="footer-nav-link">
                                         <ion-icon name="logo-linkedin"></ion-icon>
-                                    </a>
+                                    </Link>
                                 </li>
 
                                 <li className="footer-nav-item">
-                                    <a href="#" className="footer-nav-link">
+                                    <Link to={""} className="footer-nav-link">
                                         <ion-icon name="logo-instagram"></ion-icon>
-                                    </a>
+                                    </Link>
                                 </li>
 
                             </ul>
@@ -193,5 +200,5 @@ class Footer extends Component {
            
         );
     }
-}
+
 export default Footer;

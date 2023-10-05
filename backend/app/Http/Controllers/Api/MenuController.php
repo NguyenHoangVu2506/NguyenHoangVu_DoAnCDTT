@@ -85,39 +85,53 @@ class MenuController extends Controller
         return response()->json(['message' => 'thành công', 'success' => true, 'menus' => $menu], 200);
 
     }
-
-    public function menu_list($position, $parent_id = 0)
-    {
+    public function menu_list($position, $parent_id = 0){
         $args = [
-            ['position', '=', $position],
-            ['parent_id', '=', $parent_id],
-            ['status', '=', 1]
+            ['position','=',$position],
+            ['parent_id','=',$parent_id],
+            ['status','=',1]
         ];
-        $menus = Menu::where($args)
-            ->orderBy('sort_order', 'ASC')
-            ->get();
-        if(count($menus))
-            {
-                return response()->json(
-                    [
-                        'success' => true,
-                        'message' => 'Tải dữ liệu thành công',
-                        'menus' => $menus
-                    ],
-                    200
-                );
-            }
-        else{
-            return response()->json(
-                [
-                    'success' => false,
-                    'message' => 'Khong tim thay du lieu',
-                    'menus' => null
-                ],
-                404
-            );
+        $menus=Menu::where($args)->orderBy('sort_order','ASC')->get();
+        if(count($menus)>0){
+            return response()->json(['success'=>true,'message'=>"Tải dữ liệu thành công",'menus'=>$menus],200);
         }
-        
+        else{
+            return response()->json(['success'=>true,'message'=>"Không tải được dữ liệu",'menus'=> null],200);
+        }
     }
+
+    // public function menu_list($position, $parent_id =0)
+    // {
+    //     $args = [
+    //         ['position', '=', $position],
+    //         ['parent_id', '=', $parent_id],
+    //         ['status', '=', 1]
+    //     ];
+    //     $menus = Menu::where($args)
+    //         ->orderBy('sort_order','ASC')
+    //         ->get();
+    //     if(count($menus))
+    //         {
+    //             return response()->json(
+    //                 [
+    //                     'success' => true,
+    //                     'message' => 'Tải dữ liệu thành công',
+    //                     'menus' => $menus
+    //                 ],
+    //                 200
+    //             );
+    //         }
+    //     else{
+    //         return response()->json(
+    //             [
+    //                 'success' => false,
+    //                 'message' => 'Khong tim thay du lieu',
+    //                 'menus' => null
+    //             ],
+    //             404
+    //         );
+    //     }
+        
+    // }
 
 }

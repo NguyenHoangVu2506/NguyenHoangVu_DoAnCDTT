@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('db_order', function (Blueprint $table) {
+        Schema::create('order', function (Blueprint $table) {
             $table->id(); //id
             $table->unsignedInteger('user_id')->default(1);
             $table->string('name');
@@ -34,6 +34,6 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('db_order');
+        Schema::dropIfExists('order');
     }
 };

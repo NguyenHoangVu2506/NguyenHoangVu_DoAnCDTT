@@ -34,13 +34,14 @@ const ShoppingCart = ({ CartItem, addToCart, decreaseQty }) => (
                                     <td>
                                         <div class="form-group">
                                             <div class="input-group">
-                                                <span class="input-group-append">
+                                                {/* <span class="input-group-append">
                                                     <button class="btn btn-light">-</button>
                                                 </span>
                                                 <input type="text" class="form-control" name="Lines" size="2" value="1" />
                                                 <span class="input-group-append">
                                                     <button class="btn btn-light">+</button>
-                                                </span>
+                                                </span> */}
+                                                <input className="form-control" type="number" />
                                             </div>
                                         </div>
 
