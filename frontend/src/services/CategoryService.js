@@ -19,20 +19,42 @@ function remove(id){
     return httpapi.delete('category/destroy/'+id);
 
 }
-function getCategoryByParentId(parent_id){
-    return httpapi.get(`category/category_list/${parent_id}`);
+// function getCategoryByParentId(parent_id){
+//     return httpapi.get(`category/category_list/${parent_id}`);
+// }
+function getCategoryByParentId(){
+    return httpapi.get('category/category_list');
 }
-function getBySlug(slug)
+function showslug(slug)
 {
-    return httpapi.get("category/show/"+slug);
+    return httpapi.get('category/showslug/'+slug);
 }
+function getTrash(){
+    return httpapi.get('category/trash');
+}
+
+function deleteTrash(id){
+    return httpapi.get('category/trash/'+id);
+}
+
+function RescoverTrash(id){
+    return httpapi.get('category/restore/'+id);
+}
+function getCategories(){
+    return httpapi.get('category/getCategory');
+}
+
 const categoryservice = {
     getCategoryByParentId:getCategoryByParentId,
-    getBySlug:getBySlug,
+    showslug: showslug,
     getAll: getAll,
     getById: getById,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    getTrash:getTrash,
+    deleteTrash:deleteTrash,
+    RescoverTrash:RescoverTrash,
+    getCategories:getCategories,
 }
 export default categoryservice;

@@ -1,21 +1,6 @@
 import httpapi from '../httpapi'
 
-function getProductAll(limit,page=1)
-{
-    return httpapi.get(`product_all/${limit}/${page}`);
-}
-function getProductNew(limit,page=1)
-{
-    return httpapi.get(`product_new/${limit}/${page}`);
-}
-function getProductSale(limit,page=1)
-{
-    return httpapi.get(`product_sale/${limit}/${page}`);
-}
-function getProductHot(limit,page=1)
-{
-    return httpapi.get(`product_hot/${limit}/${page}`);
-}
+
 
 function getProductHome(limit,category_id)
 {
@@ -32,18 +17,18 @@ function getProductById(id)
 
 function getProductByCategoryId(limit,category_id)
 {
-    return httpapi.get(`product_category/${limit}/${category_id}`);
+    return httpapi.get(`product/product_category/${category_id}/${limit}`);
 }
 function getProductByBrandId(limit,brand_id)
 {
-    return httpapi.get(`product_brand/${limit}/${brand_id}`);
+    return httpapi.get(`product/product_brand/${limit}/${brand_id}`);
 }
 function getBySlug(slug)
 {
     return httpapi.get("category/show/"+slug);
 }
-function getAll(){
-    return httpapi.get('product/index');
+function getAll(limit,page){
+    return httpapi.get('product/index/'+ limit + '/' + page);
 }
 
 function getById(id){
@@ -61,14 +46,24 @@ function remove(id){
     return httpapi.delete('product/destroy/'+id);
 
 }
+function getSearchProduct(key,limit,page){
+    return httpapi.get(`product/search_product/${key}/${limit}/${page}`);
+}
+function getTrash(){
+    return httpapi.get('product/trash');
+}
 
+function deleteTrash(id){
+    return httpapi.get('product/trash/'+id);
+}
+
+function RescoverTrash(id){
+    return httpapi.get('product/restore/'+id);
+} 
 const productservice = {
-    getProductSale:getProductSale,
-    getProductNew:getProductNew,
-    getProductHot:getProductHot,
+    getSearchProduct:getSearchProduct,
     getProductById:getProductById,
     getProductHome:getProductHome,
-    getProductAll:getProductAll,
     getProductBySlug:getProductBySlug,
     getProductByCategoryId:getProductByCategoryId,
     getProductByBrandId:getProductByBrandId,
@@ -77,6 +72,9 @@ const productservice = {
     getById: getById,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    RescoverTrash:RescoverTrash,
+    deleteTrash:deleteTrash,
+    getTrash:getTrash,
 }
 export default productservice;

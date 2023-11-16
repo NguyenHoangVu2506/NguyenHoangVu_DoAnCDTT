@@ -201,7 +201,7 @@ button {
   outline: 1px dotted;
   outline: 5px auto -webkit-focus-ring-color;
  } */
-
+Link,
 input,
 button,
 select,
@@ -213,10 +213,12 @@ textarea {
   line-height: inherit; }
 
 button,
+Link,
 input {
   overflow: visible; }
 
 button,
+Link,
 select {
   text-transform: none; }
 
@@ -2613,8 +2615,8 @@ fieldset:disabled a.btn {
 
 .btn-sm, .btn-group-sm > .btn {
   padding: 0.35rem 0.5rem;
-  font-size: 0.82rem;
-  line-height: 1.2;
+  font-size: 1rem;
+  line-height: 2;
   border-radius: 0.37rem; }
 
 .btn-block {

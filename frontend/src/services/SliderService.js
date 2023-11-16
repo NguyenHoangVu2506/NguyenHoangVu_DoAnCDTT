@@ -22,7 +22,21 @@ function remove(id){
 function getByPosition(position){
     return httpapi.get(`slider_list/${position}`);
 }
+function getTrash(){
+    return httpapi.get('slider/trash');
+}
+
+function deleteTrash(id){
+    return httpapi.get('slider/trash/'+id);
+}
+
+function RescoverTrash(id){
+    return httpapi.get('slider/restore/'+id);
+}
 const sliderservice = {
+    getTrash:getTrash,
+    deleteTrash:deleteTrash,
+    RescoverTrash:RescoverTrash,
     getByPosition:getByPosition,
     getAll: getAll,
     getById: getById,

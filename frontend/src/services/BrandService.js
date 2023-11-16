@@ -26,6 +26,17 @@ function getBySlug(slug)
 function getBrandByParentId(parent_id){
     return httpapi.get(`brand_list/${parent_id}`);
 }
+function getTrash(){
+    return httpapi.get('brand/trash');
+}
+
+function deleteTrash(id){
+    return httpapi.get('brand/trash/'+id);
+}
+
+function RescoverTrash(id){
+    return httpapi.get('brand/restore/'+id);
+}
 const brandservice = {
     getBrandByParentId:getBrandByParentId,
     getBySlug:getBySlug,
@@ -33,6 +44,9 @@ const brandservice = {
     getById: getById,
     create: create,
     update: update,
-    remove: remove
+    remove: remove,
+    getTrash:getTrash,
+    deleteTrash:deleteTrash,
+    RescoverTrash:RescoverTrash,
 }
 export default brandservice;

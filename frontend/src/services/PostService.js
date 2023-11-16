@@ -21,21 +21,39 @@ function remove(id){
 }
 function getPostAll(limit,page=1)
 {
-    return httpapi.get(`post_all/${limit}/${page}`);
+    return httpapi.get(`post/post_all/${limit}/${page}`);
 }
 function getPostBySlug(slug)
 {
-    return httpapi.get(`post_detail/${slug}`);
+    return httpapi.get(`post/post_detail/${slug}`);
 }
-function getPostByTopicId(limit,topic_id)
+function getPostByTopicId(limit,page,topic_id)
 {
-    return httpapi.get(`post_topic/${limit}/${topic_id}`);
+    return httpapi.get(`post/post_topic/${limit}/${page}/${topic_id}`);
 }
 function getPostHome(limit)
 {
     return httpapi.get(`post_list/${limit}`);
 }
+function getTrash(){
+    return httpapi.get('post/trash');
+}
+
+function deleteTrash(id){
+    return httpapi.get('post/trash/'+id);
+}
+
+function RescoverTrash(id){
+    return httpapi.get('post/restore/'+id);
+}
+function getPageAll(){
+    return httpapi.get('post/getpageAll');
+}
 const postservice = {
+    getPageAll:getPageAll,
+    getTrash:getTrash,
+    deleteTrash:deleteTrash,
+    RescoverTrash:RescoverTrash,
     getPostHome:getPostHome,
     getPostByTopicId:getPostByTopicId,
     getPostBySlug:getPostBySlug,
